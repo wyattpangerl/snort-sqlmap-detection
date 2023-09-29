@@ -1,2 +1,2 @@
 # snort-sqlmap-detection
-Snort rules and documentation for detecting sqlmap attacks
+This repository contains snort rules and documentation for detecting sqlmap based upon HTTP request characatistics. 
