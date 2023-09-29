@@ -1,2 +1,2 @@
-# When sqlmap attemts to connect to a site, it will dislplay "sqlmap" in the connection headers for the useragent. It will be displayed twice. Once at the beginning of the header, and towards the end of the header in a URL. 
+# When sqlmap attemts to connect to a site, it will dislplay "sqlmap" in the connection headers for the useragent. It will be displayed twice. Once at the beginning of the header, and towards the end of the header in a URL. this rule also looks at all ports, in case there is some application running on another port other than port 80.  
 alert tcp any any -> any any (msg:"SQLMap User-Agent Detected"; content:"User-Agent"; nocase; http_header; pcre:"/sqlmap/i"; sid:123456789;)
