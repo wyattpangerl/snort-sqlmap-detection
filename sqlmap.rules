@@ -1,2 +1,5 @@
 # When sqlmap attemts to connect to a site, it will dislplay "sqlmap" in the connection headers for the useragent. It will be displayed twice. Once at the beginning of the header, and towards the end of the header in a URL. this rule also looks at all ports, in case there is some application running on another port other than port 80.  
 alert tcp any any -> any any (msg:"SQLMap User-Agent Detected"; content:"User-Agent"; nocase; http_header; pcre:"/sqlmap/i"; sid:123456789;)
+
+# Per requestcatcher, sqlmap sends the Connection: close header twice. We have created a rule to detect traffic that shows this header twice:
+alert tcp $HOME_NET any -> $EXTERNAL_NET $HTTP_PORTS (msg:"Connection: close header detected"; flow:to_server,established; content:"Connection: close"; nocase; pcre:"/Connection:\s*close.*Connection:\s*close/i"; sid:1000001;)
